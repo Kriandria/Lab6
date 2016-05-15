@@ -88,6 +88,8 @@ public class PokerTableController {
 	@FXML
 	private Button btnStartGame;
 	@FXML
+	private Button btnDeal;
+	@FXML
 	private ToggleButton btnPos1SitLeave;
 	@FXML
 	private ToggleButton btnPos2SitLeave;
