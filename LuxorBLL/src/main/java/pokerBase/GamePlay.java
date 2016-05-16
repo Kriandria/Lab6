@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.UUID;
 
+import exceptions.HandException;
 import pokerEnums.eDrawCount;
 
 public class GamePlay implements Serializable   {
@@ -24,7 +25,6 @@ public class GamePlay implements Serializable   {
 	private int[] iActOrder = null;
 
 	private eDrawCount DrawCnt;
-	
 	
 	public GamePlay(Rule rle, Player GameDealer)
 	{
@@ -226,6 +226,20 @@ public class GamePlay implements Serializable   {
 		return CommonHand;
 	}
 	
-
+	public void scorePlayerHands(){
+		ArrayList <HandScore> scores = new ArrayList <HandScore>();
+		Hand PlayerHand = null;
+		for(Map.Entry<UUID, Hand> entry: hmGamePlayerHand.entrySet()){
+			try {
+				PlayerHand = Hand.Evaluate(entry.getValue());
+			} catch (HandException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (PlayerHand != null){
+				scores.add(PlayerHand.getHandScore());
+			}
+		}
+	}
 	
 }
